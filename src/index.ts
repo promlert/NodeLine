@@ -23,13 +23,26 @@ app.post("/webhook", function (req, res) {
         // Define reply messages
         messages: [
           {
-            type: "text",
-            text: "Hello, user",
-          },
-          {
-            type: "text",
-            text: "May I help you?",
-          },
+            "type": "flex",
+            "altText": "This is a Flex Message",
+            "contents": {
+              "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "Hello,"
+                  },
+                  {
+                    "type": "text",
+                    "text": "World!"
+                  }
+                ]
+              }
+            }
+          }
         ],
       });
   
