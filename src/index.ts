@@ -11,73 +11,26 @@ app.use(
   })
 );
 app.get('/', (req, res) => {
-  res.send(`Hello, TypeScript with Node.js!`);
+  let dataString = JSON.stringify({
+    // Define reply token
+    replyToken: "req.body.events[0].replyToken",
+    // Define reply messages
+    messages: [      
+      {
+        "type": "flex",
+        "altText": "Call Eservice",
+        "contents":  eservice_menu
+      }
+    ],
+  });
+  res.send(`Hello, TypeScript with Node.js!${dataString}`);
 });
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!");
     // If the user sends a message to your bot, send a reply message
     if (req.body.events[0].type === "message") {
       // You must stringify reply token and message data to send to the API server
-      let dataString = JSON.stringify({
-        // Define reply token
-        replyToken: req.body.events[0].replyToken,
-        // Define reply messages
-        messages: [
-          {
-            "type": "flex",
-            "altText": "This is a Flex Message",
-            "contents": {
-              "type": "bubble",
-              "body": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                      {
-                          "type": "text",
-                          "text": "เลือกบริการที่สนใจได้เลยค่ะ",
-                          "weight": "bold",
-                          "size": "lg"
-                      }
-                  ]
-              },
-              "footer": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "spacing": "sm",
-                  "contents": [
-                      {
-                          "type": "button",
-                          "style": "link",
-                          "height": "sm",
-                          "action": {
-                              "type": "message",
-                              "label": "ฝากเงิน",
-                              "text": "ฝากเงิน"
-                          }
-                      },
-                      {
-                          "type": "button",
-                          "style": "link",
-                          "height": "sm",
-                          "action": {
-                              "type": "message",
-                              "label": "ถอนเงิน",
-                              "text": "ถอนเงิน"
-                          }
-                      },
-                      {
-                          "type": "box",
-                          "layout": "vertical",
-                          "contents": [],
-                          "margin": "sm"
-                      }
-                  ],
-                  "flex": 0
-              }
-          }
-        }
-        ],
-      });
+      let dataString = "";
      
      
       if(req.body.events[0].message.text =="ฝาก/ถอนเงิน")
@@ -86,10 +39,11 @@ app.post("/webhook", function (req, res) {
           // Define reply token
           replyToken: req.body.events[0].replyToken,
           // Define reply messages
-          messages: [      {
-                   "type": "flex",
-                   "altText": "Call Eservice",
-                   "contents":  eservice_menu
+          messages: [      
+            {
+              "type": "flex",
+              "altText": "Call Eservice",
+              "contents":  eservice_menu
             }
           ],
         });
@@ -99,7 +53,7 @@ app.post("/webhook", function (req, res) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + TOKEN,
       };
-  
+     console.log(dataString);
       // Options to pass into the request, as defined in the http.request method in the Node.js documentation
       const webhookOptions = {
         hostname: "api.line.me",
