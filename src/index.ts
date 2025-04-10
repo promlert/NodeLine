@@ -30,8 +30,16 @@ app.post("/webhook", function (req, res) {
     // If the user sends a message to your bot, send a reply message
     if (req.body.events[0].type === "message") {
       // You must stringify reply token and message data to send to the API server
-      let dataString = "";
-     
+      let dataString = JSON.stringify({
+        // Define reply token
+        replyToken: req.body.events[0].replyToken,
+        messages: [  
+          {
+            "type": "text",
+            "text": "Hello,"
+          }
+        ]
+      });
      
       if(req.body.events[0].message.text =="ฝาก/ถอนเงิน")
       {
@@ -47,6 +55,7 @@ app.post("/webhook", function (req, res) {
             }
           ],
         });
+        console.log(dataString);
       }
       // Request header. See Messaging API reference for specification
       const headers = {
