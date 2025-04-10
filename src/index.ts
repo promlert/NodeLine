@@ -1,6 +1,6 @@
 import express from "express";
 import https from "https";
-import fs from "fs";
+import * as eservice_menu from './่json/eservice_menu.json';
 const app = express();
 const TOKEN = process.env.LINE_ACCESS_TOKEN ?? "7rHgjnqiPL8MZ5zZl/cAescPyxmta+LceUOvljnKPP0hNFgDY4yG00ZeKyGLL0WaQS6SCXfhfzxwTqqVaCwEcHjmIg55goxmfqg/4EVVjNB6M459mfvTwTWp5SV8tiS2p2nVtqoV8czjFtsPZjruawdB04t89/1O/w1cDnyilFU=";
 const port = process.env.PORT ?? "9001";
@@ -11,7 +11,7 @@ app.use(
   })
 );
 app.get('/', (req, res) => {
-  res.send('Hello, TypeScript with Node.js!');
+  res.send(`Hello, TypeScript with Node.js!`);
 });
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!");
@@ -69,7 +69,7 @@ app.post("/webhook", function (req, res) {
           replyToken: req.body.events[0].replyToken,
           // Define reply messages
           messages: [
-            JSON.parse( require('./json/eservice_menu.json'))
+            eservice_menu
           ],
         });
       }
