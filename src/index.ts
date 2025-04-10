@@ -35,8 +35,53 @@ app.post("/webhook", function (req, res) {
         replyToken: req.body.events[0].replyToken,
         messages: [  
           {
-            "type": "text",
-            "text": "Hello,"
+            "type": "bubble",
+            "body": {
+              "type": "box",
+              "layout": "vertical",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "เลือกบริการที่สนใจได้เลยค่ะ",
+                  "weight": "bold",
+                  "size": "lg"
+                }
+              ]
+            },
+            "footer": {
+              "type": "box",
+              "layout": "vertical",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "button",
+                  "style": "link",
+                  "height": "sm",
+                  "action": {
+                    "type": "message",
+                    "label": "ฝากเงิน",
+                    "text": "ฝากเงิน"
+                  }
+                },
+                {
+                  "type": "button",
+                  "style": "link",
+                  "height": "sm",
+                  "action": {
+                    "type": "message",
+                    "label": "ถอนเงิน",
+                    "text": "ถอนเงิน"
+                  }
+                },
+                {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [],
+                  "margin": "sm"
+                }
+              ],
+              "flex": 0
+            }
           }
         ]
       });
