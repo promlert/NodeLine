@@ -11,19 +11,8 @@ app.use(
   })
 );
 app.get('/', (req, res) => {
-  let dataString = JSON.stringify({
-    // Define reply token
-    replyToken: "req.body.events[0].replyToken",
-    // Define reply messages
-    messages: [      
-      {
-        "type": "flex",
-        "altText": "Call Eservice",
-        "contents":  eservice_menu
-      }
-    ],
-  });
-  res.send(`Hello, TypeScript with Node.js!${dataString}`);
+
+  res.send(`Hello, TypeScript with Node.js!`);
 });
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!");
@@ -35,53 +24,8 @@ app.post("/webhook", function (req, res) {
         replyToken: req.body.events[0].replyToken,
         messages: [  
           {
-            "type": "bubble",
-            "body": {
-              "type": "box",
-              "layout": "vertical",
-              "contents": [
-                {
-                  "type": "text",
-                  "text": "เลือกบริการที่สนใจได้เลยค่ะ",
-                  "weight": "bold",
-                  "size": "lg"
-                }
-              ]
-            },
-            "footer": {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "contents": [
-                {
-                  "type": "button",
-                  "style": "link",
-                  "height": "sm",
-                  "action": {
-                    "type": "message",
-                    "label": "ฝากเงิน",
-                    "text": "ฝากเงิน"
-                  }
-                },
-                {
-                  "type": "button",
-                  "style": "link",
-                  "height": "sm",
-                  "action": {
-                    "type": "message",
-                    "label": "ถอนเงิน",
-                    "text": "ถอนเงิน"
-                  }
-                },
-                {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [],
-                  "margin": "sm"
-                }
-              ],
-              "flex": 0
-            }
+            "type": "text",
+            "text": "Hello,"
           }
         ]
       });
@@ -96,7 +40,8 @@ app.post("/webhook", function (req, res) {
           {
             "type": "flex",
             "altText": "Call Eservice",
-            "contents": {
+            "contents": 
+            {
               "type": "bubble",
               "body": {
                 "type": "box",
@@ -147,8 +92,180 @@ app.post("/webhook", function (req, res) {
             }
             }
           ]});
-        console.log(dataString);
       }
+      if(req.body.events[0].message.text =="ฝากเงิน")
+        {
+          dataString = JSON.stringify({
+            // Define reply token
+            replyToken: req.body.events[0].replyToken,
+            // Define reply messages
+            "messages": [
+            {
+              "type": "flex",
+              "altText": "Call Eservice",
+              "contents": 
+              {
+                "type": "carousel",
+                "contents": [
+                  {
+                    "type": "bubble",
+                    "size": "micro",
+                    "hero": {
+                      "type": "image",
+                      "url": "https://developers-resource.landpress.line.me/fx/clip/clip10.jpg",
+                      "size": "full",
+                      "aspectMode": "cover",
+                      "aspectRatio": "320:213"
+                    },
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "ฝากเงินผ่าน ATS",
+                          "weight": "bold",
+                          "size": "sm",
+                          "wrap": true,
+                          "align": "center"
+                        }
+                      ],
+                      "spacing": "sm",
+                      "paddingAll": "13px"
+                    },
+                    "footer": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "separator"
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "message",
+                            "label": "วิธีการ",
+                            "text": "hello"
+                          }
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "message",
+                            "label": "เริ่มฝากเงิน",
+                            "text": "hello"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "bubble",
+                    "size": "micro",
+                    "hero": {
+                      "type": "image",
+                      "url": "https://developers-resource.landpress.line.me/fx/clip/clip11.jpg",
+                      "size": "full",
+                      "aspectMode": "cover",
+                      "aspectRatio": "320:213"
+                    },
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "ฝากเงินผ่านธนาคาร Bill Payment",
+                          "weight": "bold",
+                          "size": "sm",
+                          "wrap": true,
+                          "align": "center"
+                        }
+                      ],
+                      "spacing": "sm",
+                      "paddingAll": "13px"
+                    },
+                    "footer": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "separator"
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "message",
+                            "label": "วิธีการ",
+                            "text": "manual billpayment"
+                          }
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "uri",
+                            "label": "แนบสลิป",
+                            "uri": "http://linecorp.com/"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "bubble",
+                    "size": "micro",
+                    "hero": {
+                      "type": "image",
+                      "url": "https://developers-resource.landpress.line.me/fx/clip/clip12.jpg",
+                      "size": "full",
+                      "aspectMode": "cover",
+                      "aspectRatio": "320:213"
+                    },
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "ค่าขายหลักทรัพย์",
+                          "weight": "bold",
+                          "size": "sm"
+                        }
+                      ],
+                      "spacing": "sm",
+                      "paddingAll": "13px"
+                    },
+                    "footer": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "separator"
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "uri",
+                            "label": "วิธีการ",
+                            "uri": "http://linecorp.com/"
+                          }
+                        },
+                        {
+                          "type": "button",
+                          "action": {
+                            "type": "uri",
+                            "label": "เริ่มฝากเงิน",
+                            "uri": "http://linecorp.com/"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+              }
+            ]});
+        }
       // Request header. See Messaging API reference for specification
       const headers = {
         "Content-Type": "application/json",
