@@ -61,7 +61,7 @@ app.post("/webhook", function (req, res) {
         }
         ],
       });
-      console.info(req.body.events[0]);
+     
       if(req.body.events[0].message.text =="ฝาก/ถอนเงิน")
       {
         dataString = JSON.stringify({
@@ -85,9 +85,9 @@ app.post("/webhook", function (req, res) {
         path: "/v2/bot/message/reply",
         method: "POST",
         headers: headers,
-        body: JSON.stringify(dataString),
+        body: dataString,
       };
-  
+      console.info(webhookOptions);
       // When an HTTP POST request of message type is sent to the /webhook endpoint,
       // we send an HTTP POST request to https://api.line.me/v2/bot/message/reply
       // that is defined in the webhookOptions variable.
