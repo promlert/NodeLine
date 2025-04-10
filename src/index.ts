@@ -1,5 +1,6 @@
 import express from "express";
 import https from "https";
+import fs from "fs";
 const app = express();
 const TOKEN = process.env.LINE_ACCESS_TOKEN ?? "7rHgjnqiPL8MZ5zZl/cAescPyxmta+LceUOvljnKPP0hNFgDY4yG00ZeKyGLL0WaQS6SCXfhfzxwTqqVaCwEcHjmIg55goxmfqg/4EVVjNB6M459mfvTwTWp5SV8tiS2p2nVtqoV8czjFtsPZjruawdB04t89/1O/w1cDnyilFU=";
 const port = process.env.PORT ?? "9001";
@@ -17,35 +18,60 @@ app.post("/webhook", function (req, res) {
     // If the user sends a message to your bot, send a reply message
     if (req.body.events[0].type === "message") {
       // You must stringify reply token and message data to send to the API server
-      const dataString = JSON.stringify({
+      // const dataString = JSON.stringify({
+      //   // Define reply token
+      //   replyToken: req.body.events[0].replyToken,
+      //   // Define reply messages
+      //   messages: [
+      //     {
+      //       "type": "flex",
+      //       "altText": "This is a Flex Message",
+      //       "contents": {
+      //         "type": "bubble",
+      //         "body": {
+      //           "type": "box",
+      //           "layout": "horizontal",
+      //           "contents": [
+      //             {
+      //               "type": "text",
+      //               "text": "Hello,"
+      //             },
+      //             {
+      //               "type": "text",
+      //               "text": "World!"
+      //             }
+      //           ]
+      //         }
+      //       }
+      //     }
+      //   ],
+      // });
+      // let dataString = {
+      //   replyToken: req.body.events[0].replyToken,
+      //   messages: JSON 
+      // };
+
+      let dataString = JSON.stringify({
         // Define reply token
         replyToken: req.body.events[0].replyToken,
         // Define reply messages
-        messages: [
-          {
-            "type": "flex",
-            "altText": "This is a Flex Message",
-            "contents": {
-              "type": "bubble",
-              "body": {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                  {
-                    "type": "text",
-                    "text": "Hello,"
-                  },
-                  {
-                    "type": "text",
-                    "text": "World!"
-                  }
-                ]
-              }
-            }
-          }
+        messages: [{
+          "type": "text",
+          "text": "Hello,"
+        }
         ],
       });
-  
+      if(req.body.events[0].text =="ฝาก/ถอนเงิน")
+      {
+        dataString = JSON.stringify({
+          // Define reply token
+          replyToken: req.body.events[0].replyToken,
+          // Define reply messages
+          messages: [
+            JSON.parse( require('./json/eservice_menu.json'))
+          ],
+        });
+      }
       // Request header. See Messaging API reference for specification
       const headers = {
         "Content-Type": "application/json",
@@ -58,7 +84,7 @@ app.post("/webhook", function (req, res) {
         path: "/v2/bot/message/reply",
         method: "POST",
         headers: headers,
-        body: dataString,
+        body: JSON.stringify(dataString),
       };
   
       // When an HTTP POST request of message type is sent to the /webhook endpoint,
