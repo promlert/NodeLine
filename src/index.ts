@@ -61,6 +61,7 @@ app.post("/webhook", function (req, res) {
         }
         ],
       });
+      console.info(req.body.events[0].text);
       if(req.body.events[0].text =="ฝาก/ถอนเงิน")
       {
         dataString = JSON.stringify({
