@@ -52,103 +52,54 @@ app.post("/webhook", function (req, res) {
             "type": "flex",
             "altText": "Call Eservice",
             "contents": {
-                "type": "bubble",
-                "body": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "contents": [
-                    {
-                      "type": "text",
-                      "text": "เลือกบริการที่สนใจได้เลยค่ะ",
-                      "weight": "bold",
-                      "size": "lg"
-                    }
-                  ]
-                },
-                "footer": {
-                  "type": "box",
-                  "layout": "vertical",
-                  "spacing": "sm",
-                  "contents": [
-                    {
-                      "type": "button",
-                      "style": "link",
-                      "height": "sm",
-                      "action": {
-                        "type": "message",
-                        "label": "ฝากเงิน",
-                        "text": "ฝากเงิน"
-                      }
-                    },
-                    {
-                      "type": "button",
-                      "style": "link",
-                      "height": "sm",
-                      "action": {
-                        "type": "message",
-                        "label": "ถอนเงิน",
-                        "text": "ถอนเงิน"
-                      }
-                    },
-                    {
-                      "type": "box",
-                      "layout": "vertical",
-                      "contents": [],
-                      "margin": "sm"
-                    }
-                  ],
-                  "flex": 0
-                },
-                "default": {
-                  "type": "bubble",
-                  "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                      {
-                        "type": "text",
-                        "text": "เลือกบริการที่สนใจได้เลยค่ะ",
-                        "weight": "bold",
-                        "size": "lg"
-                      }
-                    ]
-                  },
-                  "footer": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "spacing": "sm",
-                    "contents": [
-                      {
-                        "type": "button",
-                        "style": "link",
-                        "height": "sm",
-                        "action": {
-                          "type": "message",
-                          "label": "ฝากเงิน",
-                          "text": "ฝากเงิน"
-                        }
-                      },
-                      {
-                        "type": "button",
-                        "style": "link",
-                        "height": "sm",
-                        "action": {
-                          "type": "message",
-                          "label": "ถอนเงิน",
-                          "text": "ถอนเงิน"
-                        }
-                      },
-                      {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [],
-                        "margin": "sm"
-                      }
-                    ],
-                    "flex": 0
+              "type": "bubble",
+              "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "เลือกบริการที่สนใจได้เลยค่ะ",
+                    "weight": "bold",
+                    "size": "lg"
                   }
-                }
+                ]
+              },
+              "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "button",
+                    "style": "link",
+                    "height": "sm",
+                    "action": {
+                      "type": "message",
+                      "label": "ฝากเงิน",
+                      "text": "ฝากเงิน"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "style": "link",
+                    "height": "sm",
+                    "action": {
+                      "type": "message",
+                      "label": "ถอนเงิน",
+                      "text": "ถอนเงิน"
+                    }
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [],
+                    "margin": "sm"
+                  }
+                ],
+                "flex": 0
               }
+            }
             }
           ]});
         console.log(dataString);
