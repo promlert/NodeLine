@@ -68,8 +68,11 @@ app.post("/webhook", function (req, res) {
           // Define reply token
           replyToken: req.body.events[0].replyToken,
           // Define reply messages
-          messages: [
-            eservice_menu
+          messages: [      {
+                   "type": "flex",
+                   "altText": "Call Eservice",
+                   "contents":  eservice_menu
+            }
           ],
         });
       }
