@@ -18,49 +18,67 @@ app.post("/webhook", function (req, res) {
     // If the user sends a message to your bot, send a reply message
     if (req.body.events[0].type === "message") {
       // You must stringify reply token and message data to send to the API server
-      // const dataString = JSON.stringify({
-      //   // Define reply token
-      //   replyToken: req.body.events[0].replyToken,
-      //   // Define reply messages
-      //   messages: [
-      //     {
-      //       "type": "flex",
-      //       "altText": "This is a Flex Message",
-      //       "contents": {
-      //         "type": "bubble",
-      //         "body": {
-      //           "type": "box",
-      //           "layout": "horizontal",
-      //           "contents": [
-      //             {
-      //               "type": "text",
-      //               "text": "Hello,"
-      //             },
-      //             {
-      //               "type": "text",
-      //               "text": "World!"
-      //             }
-      //           ]
-      //         }
-      //       }
-      //     }
-      //   ],
-      // });
-      // let dataString = {
-      //   replyToken: req.body.events[0].replyToken,
-      //   messages: JSON 
-      // };
-
       let dataString = JSON.stringify({
         // Define reply token
         replyToken: req.body.events[0].replyToken,
         // Define reply messages
-        messages: [{
-          "type": "text",
-          "text": "Hello,"
+        messages: [
+          {
+            "type": "flex",
+            "altText": "This is a Flex Message",
+            "contents": {
+              "type": "bubble",
+              "body": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "contents": [
+                      {
+                          "type": "text",
+                          "text": "เลือกบริการที่สนใจได้เลยค่ะ",
+                          "weight": "bold",
+                          "size": "lg"
+                      }
+                  ]
+              },
+              "footer": {
+                  "type": "box",
+                  "layout": "vertical",
+                  "spacing": "sm",
+                  "contents": [
+                      {
+                          "type": "button",
+                          "style": "link",
+                          "height": "sm",
+                          "action": {
+                              "type": "message",
+                              "label": "ฝากเงิน",
+                              "text": "ฝากเงิน"
+                          }
+                      },
+                      {
+                          "type": "button",
+                          "style": "link",
+                          "height": "sm",
+                          "action": {
+                              "type": "message",
+                              "label": "ถอนเงิน",
+                              "text": "ถอนเงิน"
+                          }
+                      },
+                      {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [],
+                          "margin": "sm"
+                      }
+                  ],
+                  "flex": 0
+              }
+          }
         }
         ],
       });
+     
      
       if(req.body.events[0].message.text =="ฝาก/ถอนเงิน")
       {
@@ -90,7 +108,7 @@ app.post("/webhook", function (req, res) {
         headers: headers,
         body: dataString,
       };
-      console.info(webhookOptions);
+    
       // When an HTTP POST request of message type is sent to the /webhook endpoint,
       // we send an HTTP POST request to https://api.line.me/v2/bot/message/reply
       // that is defined in the webhookOptions variable.
