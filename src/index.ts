@@ -1,7 +1,16 @@
 import express from "express";
 import https from "https";
+import dotenv from "dotenv";
+import path from "path";
+// initialize configuration
+dotenv.config();
 import * as eservice_menu from './่json/eservice_menu.json';
 const app = express();
+
+// Configure Express to use EJS
+app.set( "views", path.join( __dirname, "views" ) );
+app.set( "view engine", "ejs" );
+
 const TOKEN = process.env.LINE_ACCESS_TOKEN ?? "7rHgjnqiPL8MZ5zZl/cAescPyxmta+LceUOvljnKPP0hNFgDY4yG00ZeKyGLL0WaQS6SCXfhfzxwTqqVaCwEcHjmIg55goxmfqg/4EVVjNB6M459mfvTwTWp5SV8tiS2p2nVtqoV8czjFtsPZjruawdB04t89/1O/w1cDnyilFU=";
 const port = process.env.PORT ?? "9001";
 app.use(express.json());
@@ -11,9 +20,12 @@ app.use(
   })
 );
 app.get('/', (req, res) => {
-
+  console.log(eservice_menu);
   res.send(`Hello, TypeScript with Node.js!`);
 });
+app.get( "/guitars", ( req, res ) => {
+  res.render( "guitars" );
+} );
 app.post("/webhook", function (req, res) {
     res.send("HTTP POST request sent to the webhook URL!");
     // If the user sends a message to your bot, send a reply message
