@@ -112,9 +112,9 @@ app.post("/webhook", function (req, res) {
                     "size": "micro",
                     "hero": {
                       "type": "image",
-                      "url": "https://developers-resource.landpress.line.me/fx/clip/clip10.jpg",
+                      "url": "https://backend-api-chat.aslsecurities.com/public/assets/img/ats_mobile.png",
                       "size": "full",
-                      "aspectMode": "cover",
+                      "aspectMode": "fit",
                       "aspectRatio": "320:213"
                     },
                     "body": {
@@ -164,9 +164,9 @@ app.post("/webhook", function (req, res) {
                     "size": "micro",
                     "hero": {
                       "type": "image",
-                      "url": "https://developers-resource.landpress.line.me/fx/clip/clip11.jpg",
+                      "url": "https://backend-api-chat.aslsecurities.com/public/assets/img/mobile-banking.png",
                       "size": "full",
-                      "aspectMode": "cover",
+                      "aspectMode": "fit",
                       "aspectRatio": "320:213"
                     },
                     "body": {
@@ -216,9 +216,9 @@ app.post("/webhook", function (req, res) {
                     "size": "micro",
                     "hero": {
                       "type": "image",
-                      "url": "https://developers-resource.landpress.line.me/fx/clip/clip12.jpg",
+                      "url": "https://backend-api-chat.aslsecurities.com/public/assets/img/insurance-agent.png",
                       "size": "full",
-                      "aspectMode": "cover",
+                      "aspectMode": "fit",
                       "aspectRatio": "320:213"
                     },
                     "body": {
