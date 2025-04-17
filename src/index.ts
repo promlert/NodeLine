@@ -283,7 +283,7 @@ app.post("/webhook", function (req, res) {
         "Content-Type": "application/json",
         Authorization: "Bearer " + TOKEN,
       };
-     console.log(dataString);
+   
       // Options to pass into the request, as defined in the http.request method in the Node.js documentation
       const webhookOptions = {
         hostname: "api.line.me",
