@@ -19,22 +19,20 @@ app.use(
   })
 );
 app.get('/', (req, res) => {
-  
   res.send(`Hello, TypeScript with Node.js!`);
 });
 app.get( "/guitars", ( req, res ) => {
   res.render( "guitars" );
 } );
 app.post("/webhook", function (req, res) {
-    res.send("HTTP POST request sent to the webhook URL!");
-    console.log(JSON.stringify(req.body.events[0])); 
+   // res.send("HTTP POST request sent to the webhook URL!");
     // If the user sends a message to your bot, send a reply message
     if (req.body.events[0].type === "message") {
       // You must stringify reply token and message data to send to the API server
       let dataString = JSON.stringify({
         // Define reply token
         replyToken: req.body.events[0].replyToken,
-        messages: [  
+        messages: [
           {
             "type": "text",
             "text": "Hello,"
