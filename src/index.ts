@@ -10,7 +10,7 @@ const app = express();
 app.set( "views", path.join( __dirname, "views" ) );
 app.set( "view engine", "ejs" );
 
-const TOKEN = process.env.LINE_ACCESS_TOKEN ?? "7rHgjnqiPL8MZ5zZl/cAescPyxmta+LceUOvljnKPP0hNFgDY4yG00ZeKyGLL0WaQS6SCXfhfzxwTqqVaCwEcHjmIg55goxmfqg/4EVVjNB6M459mfvTwTWp5SV8tiS2p2nVtqoV8czjFtsPZjruawdB04t89/1O/w1cDnyilFU=";
+const TOKEN = process.env.LINE_ACCESS_TOKEN ?? "iLvpZz5YSbkfjHbihQeveYu+cOYDAVpoBor4+kH/ayTCMnH2S+KBW9q13FflEV3i/o/ixILb8M6Ax8FQ2QdrWPonWklfigGgLW8lj391w3QQtmvBZja5UpCdWDUpuYQTgzFg5X1PJ4NL8ckC8v8UmQdB04t89/1O/w1cDnyilFU=";
 const port = process.env.PORT ?? "9001";
 app.use(express.json());
 app.use(
